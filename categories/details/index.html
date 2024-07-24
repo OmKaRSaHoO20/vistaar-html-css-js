@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Category Details</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+  </head>
+  <body>
     <div id="header-container"></div>
 
     <section class="page-wrapper">
-        <div class="grid-wrapper">
-            <div class="category-details-container">
-                <div id="demo-images" class="demo-images"></div>
-                <div id="thumbnail-image" class="thumbnail-image">
-                    <img id="selected-image" src="" alt="data" />
-                </div>
-                <div class="product-details">
-                    <div class="discount-flex">
-                        <div id="category-chip" class="category-chip"></div>
-                        <div class="category-item-type">
-                            <span class="material-icons-outlined icon" style="color:green;">discount</span>
-                            <span id="discount-percentage"></span>% OFF
-                        </div>
-                    </div>
-                    <div id="product-title" class="product-title"></div>
-                    <div class="product-size-container" id="product-size-container"></div>
-                    <div class="quantity-container">
-                        <button id="decrease-btn" class="product-size-btn" disabled>
-                            <span class="material-icons">remove</span>
-                        </button>
-                        <span id="quantity" class="quantity">1</span>
-                        <button id="increase-btn" class="product-size-btn">
-                            <span class="material-icons">add</span>
-                        </button>
-                    </div>
-                    <div>
-                        <button id="buy-btn" class="product-buy-btn">
-                            BUY @ RS. <span id="product-price"></span>
-                        </button>
-                    </div>
-                    <div id="product-description" class="product-description"></div>
-                    <div class="rating">
-                        <div id="product-rating"></div>
-                    </div>
-                </div>
+      <div class="grid-wrapper">
+        <div class="category-details-container">
+          <div id="demo-images" class="demo-images"></div>
+          <div id="thumbnail-image" class="thumbnail-image">
+            <img id="selected-image" src="" alt="data" />
+          </div>
+          <div class="product-details">
+            <div class="discount-flex">
+              <div id="category-chip" class="category-chip"></div>
+              <div class="category-item-type">
+                <span
+                  class="material-icons-outlined icon"
+                  style="color: green; margin-right: 20px"
+                  >discount
+                </span>
+                <span id="discount-percentage"> </span> % OFF
+              </div>
             </div>
+            <div id="product-title" class="product-title"></div>
+            <div
+              class="product-size-container"
+              id="product-size-container"
+            ></div>
+            <div class="quantity-container">
+              <button id="decrease-btn" class="product-size-btn" disabled>
+                <span class="material-icons">remove</span>
+              </button>
+              <span id="quantity" class="quantity">0</span>
+              <button id="increase-btn" class="product-size-btn">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+            <div>
+              <button id="buy-btn" class="product-buy-btn">
+                BUY @ RS. <span id="product-price"></span>
+              </button>
+            </div>
+            <div id="product-description" class="product-description"></div>
+            <div class="rating">
+              <div id="product-rating"></div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <div id="footer-container"></div>
 
     <script type="module" src="index.js"></script>
-</body>
+  </body>
 </html>

@@ -1,23 +1,37 @@
 import Data from "../../constants/index.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const category = sessionStorage.getItem("category")
-    const id = sessionStorage.getItem("id")
+    const category = sessionStorage.getItem("category");
+    const id = sessionStorage.getItem("id");
 
     const categoryData = Data[0][category];
-    const PRODUCT = categoryData.find(item => item.id === parseInt(id));
+    const PRODUCT = categoryData.find((item) => item.id === parseInt(id));
 
     if (!PRODUCT) {
-        document.body.innerHTML = '<div>Product not found</div>';
+        document.body.innerHTML = "<div>Product not found</div>";
         return;
     }
+
+    fetch("../../header/index.html")
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("header-container").innerHTML = data;
+
+            document
+                .getElementById("header-title")
+                .addEventListener("click", function () {
+                    window.location.href = "/";
+                });
+        });
 
     const selectedImageElem = document.getElementById("selected-image");
     const demoImagesContainer = document.getElementById("demo-images");
     const categoryChipElem = document.getElementById("category-chip");
     const discountPercentageElem = document.getElementById("discount-percentage");
     const productTitleElem = document.getElementById("product-title");
-    const productSizeContainer = document.getElementById("product-size-container");
+    const productSizeContainer = document.getElementById(
+        "product-size-container"
+    );
     const decreaseBtn = document.getElementById("decrease-btn");
     const increaseBtn = document.getElementById("increase-btn");
     const quantityElem = document.getElementById("quantity");
@@ -40,8 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateBuyButtonState = () => {
         buyBtn.disabled = quantity === 0;
+        buyBtn.classList.toggle("no-hover", quantity === 0);
         buyBtn.textContent = `BUY @ RS. ${PRODUCT.price * quantity}`;
         decreaseBtn.disabled = quantity === 0;
+        decreaseBtn.classList.toggle("no-hover", quantity === 0);
     };
 
     decreaseBtn.addEventListener("click", () => {
@@ -57,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     buyBtn.addEventListener("click", () => {
-        window.location.href = '../../contact/';
+        window.location.href = "../../contact/";
     });
 
     PRODUCT.images.forEach((image) => {
@@ -91,4 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         productSizeContainer.appendChild(button);
     });
+
+    fetch("../../footer/index.html")
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
+
+    updateBuyButtonState();
 });

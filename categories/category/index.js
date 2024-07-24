@@ -1,13 +1,27 @@
 import Data from "../../constants/index.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const CATEGORY = sessionStorage.getItem("category")
+    const CATEGORY = sessionStorage.getItem("category");
 
-    document.getElementById('categories-title').textContent = `category ${CATEGORY}`;
+    document.getElementById(
+        "categories-title"
+    ).textContent = `category ${CATEGORY}`;
 
     const categoryData = Data[0][CATEGORY];
 
     const categoryContainer = document.getElementById("category-container");
+
+    fetch("../../header/index.html")
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("header-container").innerHTML = data;
+
+            document
+                .getElementById("header-title")
+                .addEventListener("click", function () {
+                    window.location.href = "/";
+                });
+        });
 
     categoryData.forEach((category) => {
         const categoryItem = document.createElement("div");
@@ -33,9 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const discountIcon = document.createElement("span");
         discountIcon.className = "material-icons-outlined icon";
         discountIcon.style.color = "green";
+        discountIcon.style.marginRight = "20px";
         discountIcon.textContent = "discount";
         discountElem.appendChild(discountIcon);
-        discountElem.appendChild(document.createTextNode(`${Math.round(category.discountPercentage)}% OFF`));
+        discountElem.appendChild(
+            document.createTextNode(
+                ` ${Math.round(category.discountPercentage)}% OFF`
+            )
+        );
 
         discountFlex.appendChild(newElem);
         discountFlex.appendChild(discountElem);
@@ -52,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ratingElem.className = "rating";
         ratingElem.textContent = "Ratings";
         const ratingValue = document.createElement("div");
-        ratingValue.textContent = `Rating: ${category.rating}`;
+        ratingValue.textContent = `: ${category.rating} / 5`;
         ratingElem.appendChild(ratingValue);
 
         categoryItem.appendChild(imgElem);
@@ -63,4 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         categoryContainer.appendChild(categoryItem);
     });
+
+    fetch("../../footer/index.html")
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
 });
